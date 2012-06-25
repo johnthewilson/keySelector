@@ -6,6 +6,7 @@
     <title>Keylister by caltab</title>
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="stylesheets/transposer.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="javascripts/respond.js"></script>
     <!--[if lt IE 9]>
@@ -14,6 +15,7 @@
     <!--[if lt IE 8]>
     <link rel="stylesheet" href="stylesheets/ie.css">
     <![endif]-->
+    <script type="text/javascript" src="https://raw.github.com/caltab/keylister/master/keylister.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
   </head>
@@ -43,6 +45,30 @@
 <p>Keylister is a jQuery Widget that allows the user to select any key they like for a specific song. The widget automatically injects a list of root notes to select from, and binds each of those buttons to a transpose event.</p>
 
 <h3>Example</h3>
+
+<script type="text/javascript">
+    $(function() {
+        $( ".key-selector" ).keylister();
+    });
+</script>
+
+<!-- data-song of the key-selector must match the ID of the song -->
+<div class="key-selector" data-song="fortunate-son" data-key="G"></div>
+
+<pre id="fortunate-son">
+    G                    F
+    Some folks are born made to wave the flag,
+    C7                          G
+    ooh, they're red, white and blue.
+    G                        F
+    And when the band plays "Hail to the chief"
+    C7                             G
+    they point the cannon right at you.
+
+    ...
+</pre>
+
+<h3>Source</h3>
 
 <div class="highlight">
 <pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>

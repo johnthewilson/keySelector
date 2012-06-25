@@ -1,0 +1,14 @@
+.key-selector {
+	margin-bottom: 10px;
+}
+
+.key-selector a {
+	float: left;
+	margin-right: 12px;
+	font-size: 14px;
+	padding: 5px;
+}
+
+.key-selector a.active {
+	border-color: white;
+}
