@@ -29,7 +29,7 @@ var numbers = { 'Ab': 11, 'A': 0, 'A#': 1, 'Bb': 1, 'B': 2, 'C': 3, 'C#': 4, 'Db
 				root_note = dub[ idx ].replace( regex, '$1$2' ),
 				new_num = numbers[ root_note ] + ( numbers[ newKey ] - numbers[ oldKey ] ),
 				new_note = new_num >= 0 ? notesArr[ new_num % 12 ] : notesArr[ new_num + 12 ];
-                       
+
 			dub[ idx ] = new_note + extra;
 		}
 
@@ -45,9 +45,9 @@ $.fn.keylister = function() {
 
 		// Inject the key buttons
 		for ( var idx in numbers ) {
-			$keyBtns += '<a href="#">' + idx + '</a>';
+			$keyBtns += '<a href="#"' + ( idx == key ? ' class= "active"' : '' ) + '>' + idx + '</a>';
 		}
-		$keyBtns = $widget.append( $keyBtns );
+		$keyBtns = $widget.append( $keyBtns + '<br style="clear: both" />' );
 
 		// Wrap chords with strong tag plus a whitespace
 		$song.html( $song.text().replace( chordRegex, '<strong>$1 </strong>').replace( /<\/strong> /g, '</strong>' ) );
@@ -56,8 +56,9 @@ $.fn.keylister = function() {
 		$keyBtns.find('a').bind( 'click', function( evt ) {
 			evt.preventDefault();
 
-			var newKey = $( this ).text(),
-			oldKey = $widget.data( 'key' );
+			var $this = $( this ),
+				newKey = $this.text(),
+				oldKey = $widget.data( 'key' );
 			$song.find( 'strong' ).each( function() {
 				var $this = $( this ),
 					oldChord = $this.text(),
@@ -66,6 +67,9 @@ $.fn.keylister = function() {
 				// Return the new chord with the correct amount of trailing whitespace
 				$this.text( oldChord.length > newChord.length ? newChord + '  ' : ( oldChord.length < newChord.length ? $.trim( newChord ) : newChord ) );
 			});
+			// Apply active class to button just clicked
+			$this.siblings().removeClass( 'active' );
+			$this.addClass('active');
 			$widget.data( 'key', newKey );
 		});
 	});
