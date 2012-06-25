@@ -1,7 +1,7 @@
 /*!
 *
 *	Keylister v1.0 - a jQuery Plugin by Tyler Benziger
-*	http://tylerbenziger.github.com/transposer
+*	http://caltab.github.com/transposer
 * 	
 *	Copyright 2012, Tyler Benziger
 *
