@@ -6,7 +6,9 @@ This turns any div into a key selector for an associated song
 
 ```
 <script type="text/javascript">
-    $( ".key-selector" ).keylister();
+    $(function() {
+        $( ".key-selector" ).keylister();
+    });
 </script>
 
 <!-- data-song of the key-selector must match the ID of the song -->
