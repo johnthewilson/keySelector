@@ -72,7 +72,9 @@
 
 <div class="highlight">
 <pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
-    <span class="nx">$</span><span class="p">(</span> <span class="s2">".key-selector"</span> <span class="p">).</span><span class="nx">keylister</span><span class="p">();</span>
+    <span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">(</span> <span class="s2">".key-selector"</span> <span class="p">).</span><span class="nx">keylister</span><span class="p">();</span>
+    <span class="p">});</span>
 <span class="nt">&lt;/script&gt;</span>
 
 <span class="c">&lt;!-- data-song of the key-selector must match the ID of the song --&gt;</span>
