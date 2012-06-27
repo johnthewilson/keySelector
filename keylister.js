@@ -36,43 +36,63 @@ var numbers = { 'Ab': 11, 'A': 0, 'A#': 1, 'Bb': 1, 'B': 2, 'C': 3, 'C#': 4, 'Db
 			return dub.join('/');
 	};
 
-$.fn.keylister = function() {
-	return this.each( function() {
-		var $widget = $( this ),
-			key = $widget.data( 'key' ),
-			$keyBtns = '',
-			$song = $( '#' + $widget.data( 'song' ) );
+$.fn.keylister = function( isCapo ) {
+	if ( !isCapo ) {
+		return this.each( function() {
+			var $widget = $( this ),
+				key = $widget.data( 'key' ),
+				$keyBtns = '',
+				$song = $( '#' + $widget.data( 'song' ) );
 
-		// Inject the key buttons
-		for ( var idx in numbers ) {
-			$keyBtns += '<a href="#"' + ( idx == key ? ' class= "active"' : '' ) + '>' + idx + '</a>';
-		}
-		$keyBtns = $widget.append( $keyBtns + '<br style="clear: both" />' );
+			// Inject the key buttons
+			for ( var idx in numbers ) {
+				$keyBtns += '<a href="#"' + ( idx == key ? ' class= "active"' : '' ) + '>' + idx + '</a>';
+			}
+			$keyBtns = $widget.append( $keyBtns + '<br style="clear: both" />' );
 
-		// Wrap chords with strong tag plus a whitespace
-		$song.html( $song.text().replace( chordRegex, '<strong>$1 </strong>').replace( /<\/strong> /g, '</strong>' ) );
+			// Wrap chords with strong tag plus a whitespace
+			$song.html( $song.text().replace( chordRegex, '<strong>$1 </strong>').replace( /<\/strong> /g, '</strong>' ) );
 
-		// Bind key buttons to transpose the song
-		$keyBtns.find('a').bind( 'click', function( evt ) {
-			evt.preventDefault();
+			// Bind key buttons to transpose the song
+			$keyBtns.find('a').bind( 'click', function( evt ) {
+				evt.preventDefault();
 
-			var $this = $( this ),
-				newKey = $this.text(),
-				oldKey = $widget.data( 'key' );
-			$song.find( 'strong' ).each( function() {
 				var $this = $( this ),
-					oldChord = $this.text(),
-					newChord = transpose( newKey, oldKey, $.trim( oldChord ) ) + ' ';
+					newKey = $this.text(),
+					oldKey = $widget.data( 'key' );
+				$song.find( 'strong' ).each( function() {
+					var $this = $( this ),
+						oldChord = $this.text(),
+						newChord = transpose( newKey, oldKey, $.trim( oldChord ) ) + ' ';
 				
-				// Return the new chord with the correct amount of trailing whitespace
-				$this.text( oldChord.length > newChord.length ? newChord + '  ' : ( oldChord.length < newChord.length ? $.trim( newChord ) : newChord ) );
+					// Return the new chord with the correct amount of trailing whitespace
+					$this.text( oldChord.length > newChord.length ? newChord + '  ' : ( oldChord.length < newChord.length ? $.trim( newChord ) : newChord ) );
+				});
+				// Apply active class to button just clicked
+				$this.siblings().removeClass( 'active' );
+				$this.addClass('active');
+				$widget.data( 'key', newKey );
 			});
-			// Apply active class to button just clicked
-			$this.siblings().removeClass( 'active' );
-			$this.addClass('active');
-			$widget.data( 'key', newKey );
 		});
-	});
+	} else {
+		return this.each( function() {
+			var $widget = $( this ),
+				capo = $widget.data( 'capo' ),
+				$song = $( '#' + $widget.data( 'song' ) ),
+				$songHeader = $( '[data-header=' + $widget.data( 'song' ) + ']' );
+				
+			$widget.bind( 'change', function() {
+				var $capo = $songHeader.find( ".capo" );
+				if ( !$capo.length ) {
+					$songHeader.append( '<span class="capo">Capo: ' + $( this ).val() + '</span>' );
+				} else {
+					$capo.text( 'Capo: ' + $( this ).val() );
+				}
+				
+				//transpose song
+			});
+		});
+	}
 };
 
 })( jQuery );
