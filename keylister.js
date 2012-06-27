@@ -37,13 +37,29 @@ var numbers = { 'Ab': 11, 'A': 0, 'A#': 1, 'Bb': 1, 'B': 2, 'C': 3, 'C#': 4, 'Db
 	};
 
 $.fn.keylister = function( isCapo ) {
-	if ( !isCapo ) {
-		return this.each( function() {
-			var $widget = $( this ),
-				key = $widget.data( 'key' ),
-				$keyBtns = '',
-				$song = $( '#' + $widget.data( 'song' ) );
+	return this.each( function() {		
+		var $widget = $( this ),
+			key = $widget.attr( 'data-key' ),
+			capo = $widget.attr( 'data-capo' ),
+			title = $widget.attr( 'data-song' ),
+			$song = $( '#' + $widget.attr( 'data-song' ) ),
+			$songHeader = $( '[data-header=' + $widget.attr( 'data-song' ) + ']' ),
+			$keyBtns = '';
 
+		if ( isCapo ) {
+			$widget.bind( 'change', function() {
+				console.log('Capo: ' + parseInt($(this).val()));
+				var val = parseInt( $( this ).val() ),
+					str = ( val == 0 ) ? '' : ( 'Capo: ' + val ),
+					$capo = $songHeader.find( ".capo" );
+					
+				if ( !$capo.length ) {
+					$songHeader.append( '<span class="capo">' + str + '</span>' );
+				} else {
+					$capo.text( str );
+				}
+			});
+		} else {
 			// Inject the key buttons
 			for ( var idx in numbers ) {
 				$keyBtns += '<a href="#"' + ( idx == key ? ' class= "active"' : '' ) + '>' + idx + '</a>';
@@ -64,7 +80,7 @@ $.fn.keylister = function( isCapo ) {
 					var $this = $( this ),
 						oldChord = $this.text(),
 						newChord = transpose( newKey, oldKey, $.trim( oldChord ) ) + ' ';
-				
+			
 					// Return the new chord with the correct amount of trailing whitespace
 					$this.text( oldChord.length > newChord.length ? newChord + '  ' : ( oldChord.length < newChord.length ? $.trim( newChord ) : newChord ) );
 				});
@@ -73,26 +89,8 @@ $.fn.keylister = function( isCapo ) {
 				$this.addClass('active');
 				$widget.data( 'key', newKey );
 			});
-		});
-	} else {
-		return this.each( function() {
-			var $widget = $( this ),
-				capo = $widget.data( 'capo' ),
-				$song = $( '#' + $widget.data( 'song' ) ),
-				$songHeader = $( '[data-header=' + $widget.data( 'song' ) + ']' );
-				
-			$widget.bind( 'change', function() {
-				var $capo = $songHeader.find( ".capo" );
-				if ( !$capo.length ) {
-					$songHeader.append( '<span class="capo">Capo: ' + $( this ).val() + '</span>' );
-				} else {
-					$capo.text( 'Capo: ' + $( this ).val() );
-				}
-				
-				//transpose song
-			});
-		});
-	}
+		}
+	});
 };
 
 })( jQuery );
