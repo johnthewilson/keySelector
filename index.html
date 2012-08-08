@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Keylister by caltab</title>
+    <title>Key Selector by Tyler Benziger</title>
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
     <link rel="stylesheet" href="stylesheets/transposer.css">
@@ -15,16 +15,16 @@
     <!--[if lt IE 8]>
     <link rel="stylesheet" href="stylesheets/ie.css">
     <![endif]-->
-    <script type="text/javascript" src="https://raw.github.com/caltab/keylister/master/keylister.js"></script>
+    <script type="text/javascript" src="https://raw.github.com/tybenz/keySelector/master/key.selector.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
   </head>
   <body>
       <div id="header">
         <nav>
-          <li class="fork"><a href="https://github.com/caltab/keylister">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/caltab/keylister/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/caltab/keylister/tarball/master">TAR</a></li>
+          <li class="fork"><a href="https://github.com/tybenz/keySelector">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/tybenz/keySelector/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/tybenz/keySelector/tarball/master">TAR</a></li>
           <li class="title">DOWNLOADS</li>
         </nav>
       </div><!-- end header -->
@@ -33,22 +33,22 @@
 
       <section>
         <div id="title">
-          <h1>Keylister</h1>
+          <h1>Key Selector</h1>
           <p>jQuery Widget for song key selection</p>
           <hr>
           <span class="credits left">Project maintained by <a href="https://github.com/caltab">caltab</a></span>
           <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
         </div>
 
-        <h1>Keylister</h1>
+        <h1>Key Selector</h1>
 
-<p>Keylister is a jQuery Widget that allows the user to select any key they like for a specific song. The widget automatically injects a list of root notes to select from, and binds each of those buttons to a transpose event.</p>
+<p>Key Selector is a jQuery Widget that allows the user to select any key they like for a specific song. The widget automatically injects a list of root notes to select from, and binds each of those buttons to a transpose event.</p>
 
 <h3>Example</h3>
 
 <script type="text/javascript">
     $(function() {
-        $( ".key-selector" ).keylister();
+        $( ".key-selector" ).keySelector();
     });
 </script>
 
@@ -73,7 +73,7 @@
 <div class="highlight">
 <pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
     <span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="nx">$</span><span class="p">(</span> <span class="s2">".key-selector"</span> <span class="p">).</span><span class="nx">keylister</span><span class="p">();</span>
+        <span class="nx">$</span><span class="p">(</span> <span class="s2">".key-selector"</span> <span class="p">).</span><span class="nx">keySelector</span><span class="p">();</span>
     <span class="p">});</span>
 <span class="nt">&lt;/script&gt;</span>
 
