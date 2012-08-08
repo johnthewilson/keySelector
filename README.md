@@ -1,4 +1,4 @@
-# Keylister
+# Key Selector
 
 This turns any div into a key selector for an associated song
 
@@ -7,7 +7,7 @@ This turns any div into a key selector for an associated song
 ```html
 <script type="text/javascript">
     $(function() {
-        $( ".key-selector" ).keylister();
+        $( ".key-selector" ).keySelector();
     });
 </script>
 
