@@ -4,7 +4,7 @@ nav: projects
 title: Key Selector
 ---
 <script type="text/javascript" charset="utf-8" src="http://code.jquery.com/jquery.min.js"></script>
-<script type="text/javascript" charset="utf-8" src="https://raw.github.com/tybenz/keySelector/master/key.selector.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/key.selector.js"></script>
 
 
 <p>Key Selector is a jQuery Widget that allows the user to select any key they like for a specific song. The widget automatically injects a list of root notes to select from, and binds each of those buttons to a transpose event.</p>
